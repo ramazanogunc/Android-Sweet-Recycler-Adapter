@@ -1,0 +1,3 @@
+rootProject.name='Sweet Recycler Adapter'
+include ':app'
+include ':sweetrecycleradapter'
