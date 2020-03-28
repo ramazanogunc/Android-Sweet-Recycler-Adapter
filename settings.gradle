@@ -1,2 +1,3 @@
 rootProject.name='Sweet Recycler Adapter'
 include ':sweetrecycleradapter'
+include ':test'

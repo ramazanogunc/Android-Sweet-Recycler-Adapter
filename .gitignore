@@ -29,6 +29,8 @@ build/
 
 #app
 app/
+test/
+
 
 # Local configuration file (sdk path, etc)
 local.properties
