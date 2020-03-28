@@ -20,7 +20,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    List<User> user;
+    List<ExampleModel> fakeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,34 +33,31 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.rw);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        SweetRecyclerAdapter<User> sweetRecyclerAdapter = new SweetRecyclerAdapter<>(this,user);
+        SweetRecyclerAdapter<ExampleModel> sweetRecyclerAdapter = new SweetRecyclerAdapter<>(this,fakeList);
 
-        sweetRecyclerAdapter.addHolder(R.layout.item1, 0, new ISetItemView<User>() {
+        sweetRecyclerAdapter.addHolder(R.layout.item1, 0, new ISetItemView<ExampleModel>() {
             @Override
-            public void setItemView(View v, User item) {
-                TextView tw1 = v.findViewById(R.id.txtTv1);
-                TextView tw2 = v.findViewById(R.id.txtT2);
-
-                tw1.setText(item.getName());
-                tw1.setText(item.getSurname());
+            public void setItemView(View v, ExampleModel item) {
+                TextView tw1 = v.findViewById(R.id.tw1);
+                tw1.setText(item.getText());
             }
-        }, new IOnRecyclerItemClickListener<User>() {
+        }, new IOnRecyclerItemClickListener<ExampleModel>() {
             @Override
-            public void onRecyclerItemListener(View v, User item) {
+            public void onRecyclerItemListener(View v, ExampleModel item) {
+                Toast.makeText(MainActivity.this, "Layout0 on Clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
-
-        sweetRecyclerAdapter.addHolder(R.layout.item2, 1, new ISetItemView<User>() {
+        sweetRecyclerAdapter.addHolder(R.layout.item2, 1, new ISetItemView<ExampleModel>() {
             @Override
-            public void setItemView(View v, User item) {
-                CheckBox cb = v.findViewById(R.id.chkRemember);
-
-                cb.setChecked(true);
+            public void setItemView(View v, ExampleModel item) {
+                TextView tw1 = v.findViewById(R.id.l2tw1);
+                tw1.setText(item.getText());
             }
-        }, new IOnRecyclerItemClickListener<User>() {
+        }, new IOnRecyclerItemClickListener<ExampleModel>() {
             @Override
-            public void onRecyclerItemListener(View v, User item) {
+            public void onRecyclerItemListener(View v, ExampleModel item) {
+                Toast.makeText(MainActivity.this, "Layout1 on Clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -71,15 +68,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void fakeData()
     {
-        user =  new ArrayList<>();
-        User user2 = new User(0,"sdgfsdg", "sezfdghfghgin", true);
-        User user3 = new User(1,"burak", "sezgin", true);
-        User user4 = new User(0,"Ramo", "sezgdsfsdin", true);
-        User user5 = new User(1,"buradsfsdfk", "sezgin", false);
-
-        user.add(user2);
-        user.add(user3);
-        user.add(user4);
-        user.add(user5);
+        fakeList =  new ArrayList<>();
+        fakeList.add(new ExampleModel(0, "RamoL0"));
+        fakeList.add(new ExampleModel(1, "RamoL1"));
+        fakeList.add(new ExampleModel(0, "RamoL0"));
+        fakeList.add(new ExampleModel(0, "RamoL0"));
+        fakeList.add(new ExampleModel(1, "RamoL1"));
     }
 }

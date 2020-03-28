@@ -27,10 +27,8 @@ build/
 # idea
 .idea/
 
-#app
-app/
-test/
-
+# test module
+/test
 
 # Local configuration file (sdk path, etc)
 local.properties

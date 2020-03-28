@@ -30,7 +30,7 @@ public class SweetRecyclerAdapter<T extends SweetModel> extends RecyclerView.Ada
         for (int i = 0; i < itemHolderList.size(); i++) {
             ItemHolder<T> item = itemHolderList.get(i);
             if (viewType == item.getViewType())
-                return new SweetViewHolder<>(context,parent,item.getResourceId(),item.getiSetItemView());
+                return new SweetViewHolder<>(context,parent,item);
         }
         return null;
 
