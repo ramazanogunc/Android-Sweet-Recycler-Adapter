@@ -2,17 +2,16 @@ package com.ramo.sweetrecycleradapter
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 
-class SweetRecyclerAdapter<T : ViewTypeListener>(
-        private val list: List<T>,
-) : RecyclerView.Adapter<SweetViewHolder<T>>() {
+class SweetRecyclerAdapter<T : ViewTypeListener>
+    : ListAdapter<T, SweetViewHolder<T>>(SweetComparator<T>()) {
 
     private val itemHolderList = mutableListOf<ItemHolder<T>>()
     private var onItemClick: ((View, T) -> Unit)? = null
 
     fun addHolder(layoutId: Int, bindRecyclerItem: (v: View, item: T) -> Unit) =
-        itemHolderList.add(ItemHolder<T>(layoutId, bindRecyclerItem))
+            itemHolderList.add(ItemHolder<T>(layoutId, bindRecyclerItem))
 
 
     fun setOnItemClickListener(onItemClick: (v: View, item: T) -> Unit) {
@@ -28,7 +27,7 @@ class SweetRecyclerAdapter<T : ViewTypeListener>(
     }
 
     override fun onBindViewHolder(holder: SweetViewHolder<T>, position: Int) {
-        val item = list[position]
+        val item = getItem(position)
         holder.bind(item)
         if (onItemClick != null)
             holder.itemView.setOnClickListener { view ->
@@ -36,6 +35,7 @@ class SweetRecyclerAdapter<T : ViewTypeListener>(
             }
     }
 
-    override fun getItemViewType(position: Int) = list[position].getRecyclerItemLayoutId()
-    override fun getItemCount() = list.size
+    override fun getItemViewType(position: Int): Int {
+        return getItem(position).getRecyclerItemLayoutId()
+    }
 }
