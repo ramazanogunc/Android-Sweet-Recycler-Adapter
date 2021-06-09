@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SweetRecyclerAdapter<T extends SweetModel> extends RecyclerView.Adapter<SweetViewHolder<T>> {
+public class SweetRecyclerAdapter<T extends ViewTypeListener> extends RecyclerView.Adapter<SweetViewHolder<T>> {
 
     private Context context;
     private List<T> list;
@@ -45,7 +45,7 @@ public class SweetRecyclerAdapter<T extends SweetModel> extends RecyclerView.Ada
 
     @Override
     public int getItemViewType(int position) {
-        return list.get(position).getViewType();
+        return list.get(position).getRecyclerViewType();
     }
 
     @Override
