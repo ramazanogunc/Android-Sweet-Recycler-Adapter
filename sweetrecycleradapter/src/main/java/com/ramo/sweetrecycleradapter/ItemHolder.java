@@ -4,13 +4,13 @@ public class ItemHolder<T> {
     private int resourceId;
     private int viewType;
     private ISetItemView<T> iSetItemView;
-    private IOnRecyclerItemClickListener<T> iOnRecyclerItemClickListener;
+    private OnRecyclerItemClickListener<T> onRecyclerItemClickListener;
 
-    public ItemHolder(int resourceId, int viewType, ISetItemView<T> iSetItemView, IOnRecyclerItemClickListener<T> iOnRecyclerItemClickListener) {
+    public ItemHolder(int resourceId, int viewType, ISetItemView<T> iSetItemView, OnRecyclerItemClickListener<T> onRecyclerItemClickListener) {
         this.resourceId = resourceId;
         this.viewType = viewType;
         this.iSetItemView = iSetItemView;
-        this.iOnRecyclerItemClickListener = iOnRecyclerItemClickListener;
+        this.onRecyclerItemClickListener = onRecyclerItemClickListener;
     }
 
     public int getViewType() {
@@ -25,7 +25,7 @@ public class ItemHolder<T> {
         return iSetItemView;
     }
 
-    public IOnRecyclerItemClickListener<T> getiOnRecyclerItemClickListener() {
-        return iOnRecyclerItemClickListener;
+    public OnRecyclerItemClickListener<T> getOnRecyclerItemClickListener() {
+        return onRecyclerItemClickListener;
     }
 }

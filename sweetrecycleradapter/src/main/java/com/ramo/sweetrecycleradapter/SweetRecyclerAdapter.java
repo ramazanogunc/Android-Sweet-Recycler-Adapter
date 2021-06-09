@@ -20,8 +20,8 @@ public class SweetRecyclerAdapter<T extends ViewTypeListener> extends RecyclerVi
         this.list = list;
     }
 
-    public void addHolder(int resourceId, int viewType, ISetItemView<T> iSetItemView,IOnRecyclerItemClickListener<T> iOnRecyclerItemClickListener) {
-        itemHolderList.add(new ItemHolder(resourceId, viewType, iSetItemView,iOnRecyclerItemClickListener));
+    public void addHolder(int resourceId, int viewType, ISetItemView<T> iSetItemView,OnRecyclerItemClickListener<T> onRecyclerItemClickListener) {
+        itemHolderList.add(new ItemHolder(resourceId, viewType, iSetItemView,onRecyclerItemClickListener));
     }
 
     @NonNull

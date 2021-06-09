@@ -6,14 +6,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ramo.sweetrecycleradapter.IOnRecyclerItemClickListener;
 import com.ramo.sweetrecycleradapter.ISetItemView;
+import com.ramo.sweetrecycleradapter.OnRecyclerItemClickListener;
 import com.ramo.sweetrecycleradapter.SweetRecyclerAdapter;
-import com.ramo.sweetrecycleradapter.SweetViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView tw1 = v.findViewById(R.id.tw1);
                 tw1.setText(item.getText());
             }
-        }, new IOnRecyclerItemClickListener<ExampleModel>() {
+        }, new OnRecyclerItemClickListener<ExampleModel>() {
             @Override
             public void onRecyclerItemListener(View v, ExampleModel item) {
                 Toast.makeText(MainActivity.this, "Layout0 on Clicked", Toast.LENGTH_SHORT).show();
@@ -54,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView tw1 = v.findViewById(R.id.l2tw1);
                 tw1.setText(item.getText());
             }
-        }, new IOnRecyclerItemClickListener<ExampleModel>() {
+        }, new OnRecyclerItemClickListener<ExampleModel>() {
             @Override
             public void onRecyclerItemListener(View v, ExampleModel item) {
                 Toast.makeText(MainActivity.this, "Layout1 on Clicked", Toast.LENGTH_SHORT).show();

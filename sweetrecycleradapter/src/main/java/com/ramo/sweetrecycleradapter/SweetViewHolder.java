@@ -20,11 +20,11 @@ public class SweetViewHolder<T> extends RecyclerView.ViewHolder {
     public void bind(final T item) {
         itemHolder.getiSetItemView().setItemView(this.itemView, item);
 
-        if (itemHolder.getiOnRecyclerItemClickListener() != null)
+        if (itemHolder.getOnRecyclerItemClickListener() != null)
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    itemHolder.getiOnRecyclerItemClickListener().onRecyclerItemListener(view, item);
+                    itemHolder.getOnRecyclerItemClickListener().onRecyclerItemListener(view, item);
                 }
             });
     }
