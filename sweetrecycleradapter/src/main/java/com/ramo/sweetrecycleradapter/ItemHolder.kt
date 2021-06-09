@@ -1,8 +1,8 @@
 package com.ramo.sweetrecycleradapter
 
+import android.view.View
+
 data class ItemHolder<T>(
-        val resourceId: Int,
-        val viewType: Int,
-        val bindRecyclerItem: BindRecyclerItem<T>,
-        val onRecyclerItemClickListener: OnRecyclerItemClickListener<T>
+        val layoutId: Int,
+        val bindRecyclerItem: (v: View, item: T) -> Unit
 )
