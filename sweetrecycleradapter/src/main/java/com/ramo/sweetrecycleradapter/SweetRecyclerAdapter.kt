@@ -2,11 +2,14 @@ package com.ramo.sweetrecycleradapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import java.lang.Exception
 import java.util.*
 
-class SweetRecyclerAdapter<T : ViewTypeListener>(private val list: List<T>) : RecyclerView.Adapter<SweetViewHolder<T>>() {
-    private val itemHolderList: MutableList<ItemHolder<T>> = ArrayList()
+class SweetRecyclerAdapter<T : ViewTypeListener>(
+        private val list: List<T>
+) : RecyclerView.Adapter<SweetViewHolder<T>>() {
+
+    private val itemHolderList = mutableListOf<ItemHolder<T>>()
+
     fun addHolder(resourceId: Int, viewType: Int, bindRecyclerItem: BindRecyclerItem<T>, onRecyclerItemClickListener: OnRecyclerItemClickListener<T>) {
         itemHolderList.add(ItemHolder<T>(resourceId, viewType, bindRecyclerItem, onRecyclerItemClickListener))
     }
@@ -16,7 +19,7 @@ class SweetRecyclerAdapter<T : ViewTypeListener>(private val list: List<T>) : Re
             val item: ItemHolder<T> = itemHolderList[i]
             if (viewType == item.viewType) return SweetViewHolder(parent, item)
         }
-        throw Exception("SweetRecyclerAdapter: ViewHolder is not found!")
+        throw HolderNotFoundException()
     }
 
     override fun onBindViewHolder(holder: SweetViewHolder<T>, position: Int) {
@@ -25,7 +28,7 @@ class SweetRecyclerAdapter<T : ViewTypeListener>(private val list: List<T>) : Re
     }
 
     override fun getItemViewType(position: Int): Int {
-        return list[position]!!.getRecyclerViewType()
+        return list[position].getRecyclerViewType()
     }
 
     override fun getItemCount(): Int {
