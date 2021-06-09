@@ -1,13 +1,13 @@
 package com.ramo.test
 
 import android.os.Bundle
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ramo.sweetrecycleradapter.SweetRecyclerAdapter
-import java.util.*
+import com.ramo.test.databinding.Item1Binding
+import com.ramo.test.databinding.Item2Binding
 
 class MainActivity : AppCompatActivity() {
     var fakeList = mutableListOf<ExampleModel>()
@@ -20,14 +20,14 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
 
-        val sweetRecyclerAdapter = SweetRecyclerAdapter(fakeList)
+        val sweetRecyclerAdapter = SweetRecyclerAdapter<ExampleModel>()
         sweetRecyclerAdapter.addHolder(R.layout.item1) { view, item ->
-            val tw1 = view.findViewById<TextView>(R.id.tw1)
-            tw1.text = item.text
+            val vb = Item1Binding.bind(view)
+            vb.tw1.text = item.text
         }
         sweetRecyclerAdapter.addHolder(R.layout.item2) { view, item ->
-            val tw1 = view.findViewById<TextView>(R.id.l2tw1)
-            tw1.text = item.text
+            val vb = Item2Binding.bind(view)
+            vb.l2tw1.text = item.text
         }
 
         sweetRecyclerAdapter.setOnItemClickListener { v, item ->
@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         recyclerView.adapter = sweetRecyclerAdapter
+
+        sweetRecyclerAdapter.submitList(fakeList)
     }
 
     private fun fakeData() {
