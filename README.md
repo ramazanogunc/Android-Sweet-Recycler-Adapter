@@ -14,34 +14,39 @@ allprojects {
 ```
 Add module dependecy 
 ```
-implementation 'com.github.ramazanogunc:Android-Sweet-Recycler-Adapter:1.0.0'
+implementation 'com.github.ramazanogunc:Android-Sweet-Recycler-Adapter:2.0.0'
 ```
-Java code
+Kotlin code
 ```
 //params => context, item layout id, list
-SweetRecyclerAdapter<String> sweetRecyclerAdapter = new SweetRecyclerAdapter<>(this, R.layout.item, list);
 
-//required method
-sweetRecyclerAdapter.setItemView(new ISetItemView<String>() {
-    @Override
-    public void setItemView(View v, String item) {
-        //set Item data
-        
-        //exmaple
-        TextView textView = v.findViewById(R.id.tw);
-        textView.setText(item);
+val sweetRecyclerAdapter = SweetRecyclerAdapter<ExampleModel>()
+// Add view holder bind
+sweetRecyclerAdapter.addHolder(R.layout.item1) { view, item ->
+    val vb = Item1Binding.bind(view)
+    vb.tw1.text = item.text
+}
+sweetRecyclerAdapter.addHolder(R.layout.item2) { view, item ->
+    val vb = Item2Binding.bind(view)
+    vb.l2tw1.text = item.text
+}
+
+// optional
+sweetRecyclerAdapter.setOnItemClickListener { v, item ->
+    Toast.makeText(this, "denemee", Toast.LENGTH_SHORT).show()
+}
+
+recyclerView.adapter = sweetRecyclerAdapter
+```
+Kotlin code
+```
+// ViewTypeListener return value match holder layout id
+data class ExampleModel(val viewType: Int, val text: String) : ViewTypeListener {
+    override fun getRecyclerItemLayoutId(): Int {
+        return if (viewType == 0) R.layout.item1
+        else R.layout.item2
     }
-});
-
-// not required
-sweetRecyclerAdapter.setOnRecyclerItemClickListener(new IOnRecyclerItemClickListener<String>() {
-    @Override
-    public void onRecyclerItemListener(View v, String item) {
-        //on item click mode
-    }
-});
-
-recyclerView.setAdapter(sweetRecyclerAdapter);
+}
 ```
 
 # License
