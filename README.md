@@ -14,7 +14,7 @@ allprojects {
 ```
 Add module dependecy 
 ```
-implementation 'com.github.ramazanogunc:Android-Sweet-Recycler-Adapter:2.0.0'
+implementation 'com.github.ramazanogunc:Android-Sweet-Recycler-Adapter:2.0.1'
 ```
 Kotlin code
 ```
